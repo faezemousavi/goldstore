@@ -1,0 +1,72 @@
+﻿@model IEnumerable<DataLayer.Product>
+
+@{
+    ViewBag.Title = "محصولات";
+    Layout = "~/Areas/Admin/Views/Shared/_DefaultAdmin.cshtml";
+}
+
+<h2>محصولات</h2>
+
+<p>
+    <a class="btn btn-primary" href="@Url.Action("Create")">افزودن محصول جدید</a>
+</p>
+<table class="table table-bordered">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Product_image)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Product_title)
+        </th>
+        <th>
+            گروه های این محصول
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Product_price)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Product_CreateDate)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <img class="thumbnail" src="/Images/ProductImages/Thumb/@item.Product_image" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Product_title)
+            </td>
+            <td>
+                @if (item.PGRells.Any())
+                {
+                    <ol>
+                        @foreach (var group in item.PGRells)
+                        {
+                            <li>
+                                @group.Products_group.Group_title
+                            </li>
+                        }
+                    </ol>
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Product_price)
+            </td>
+
+            <td>
+                @item.Product_CreateDate.ToString("dddd, dd MMMM yyyy")
+            </td>
+            <td>
+                <a class="btn btn-default btn-xs" href="@Url.Action("ProductFeaturs",new {id=item.Product_id})">ویژگی های محصول</a>
+                <a class="btn btn-info btn-xs" href="@Url.Action("Gallery",new {id=item.Product_id})">گالری محصول</a>
+                <a class="btn btn-warning btn-xs" href="@Url.Action("Edit",new {id=item.Product_id})">ویرایش محصول</a>
+                <a class="btn btn-danger btn-xs" href="@Url.Action("Delete",new {id=item.Product_id})">حذف محصول</a>
+            </td>
+        </tr>
+    }
+
+</table>

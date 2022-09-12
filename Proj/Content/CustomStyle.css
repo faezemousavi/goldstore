@@ -1,0 +1,22 @@
+﻿.field-validation-valid{
+    display: none;
+}
+.filters p{
+    padding-right:5px;
+}
+
+.filter input[type=text]{
+    margin: 0 auto 0;
+    width:90% !important;
+}
+.filter input[type=number]{
+    width:90% !important;
+    margin: 0 auto 0;
+}
+
+.filter input[type=checkbox]{
+    margin:10px;
+}
+.filter ul{
+    padding:5px;
+}

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="14945ed4358343b8a76bbac6381d7818" Name="Diagram1" ZoomLevel="90">
+        <EntityTypeShape EntityType="ProjModel.Role" Width="1.5" PointX="0.5" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjModel.User" Width="1.5" PointX="0.5" PointY="2.875" />
+        <AssociationConnector Association="ProjModel.FK_User_Roles" />
+        <EntityTypeShape EntityType="ProjModel.Products_group" Width="1.5" PointX="3.375" PointY="0.75" />
+        <AssociationConnector Association="ProjModel.FK_Products_group_Products_group1" />
+        <EntityTypeShape EntityType="ProjModel.PGRell" Width="1.5" PointX="7.75" PointY="3" />
+        <EntityTypeShape EntityType="ProjModel.Product" Width="2" PointX="5" PointY="4.625" />
+        <AssociationConnector Association="ProjModel.FK_PGRell_Product" />
+        <AssociationConnector Association="ProjModel.FK_PGRell_Products_group" />
+        <EntityTypeShape EntityType="ProjModel.Gallery" Width="1.5" PointX="7.75" PointY="0.75" />
+        <AssociationConnector Association="ProjModel.FK_Gallery_Product" />
+        <EntityTypeShape EntityType="ProjModel.Tag" Width="1.5" PointX="7.75" PointY="11.25" />
+        <AssociationConnector Association="ProjModel.FK_Tags_Product" />
+        <EntityTypeShape EntityType="ProjModel.Feature" Width="1.5" PointX="5.5" PointY="9.375" />
+        <EntityTypeShape EntityType="ProjModel.PFRell" Width="1.5" PointX="7.75" PointY="6.125" />
+        <AssociationConnector Association="ProjModel.FK_PFRell_Feature" />
+        <AssociationConnector Association="ProjModel.FK_PFRell_Product" />
+        <EntityTypeShape EntityType="ProjModel.Comment" Width="1.5" PointX="7.75" PointY="14.75" />
+        <AssociationConnector Association="ProjModel.FK_Comment_Comment" />
+        <AssociationConnector Association="ProjModel.FK_Comment_Product" />
+        <EntityTypeShape EntityType="ProjModel.OrderDetail" Width="1.5" PointX="10.75" PointY="5" />
+        <EntityTypeShape EntityType="ProjModel.Order" Width="1.5" PointX="2.75" PointY="4.25" />
+        <AssociationConnector Association="ProjModel.FK_OrderDetails_Orders" />
+        <AssociationConnector Association="ProjModel.FK_OrderDetails_Product" />
+        <AssociationConnector Association="ProjModel.FK_Orders_User" />
+        <EntityTypeShape EntityType="ProjModel.Slider" Width="1.5" PointX="0.75" PointY="7.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

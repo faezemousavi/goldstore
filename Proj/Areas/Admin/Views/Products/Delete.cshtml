@@ -1,0 +1,73 @@
+﻿@model DataLayer.Product
+
+@{
+    ViewBag.Title = "حذف محصول";
+    Layout = "~/Areas/Admin/Views/Shared/_DefaultAdmin.cshtml";
+}
+
+<h2>حذف محصول</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Product</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Product_title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Product_title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Product_ShortDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Product_ShortDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Product_text)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Product_text)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Product_price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Product_price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Product_CreateDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Product_CreateDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Product_image)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Product_image)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

@@ -1,0 +1,901 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ProjModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="Comment_id" />
+          </Key>
+          <Property Name="Comment_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Product_id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="350" Nullable="false" />
+          <Property Name="WebSite" Type="nvarchar" MaxLength="350" />
+          <Property Name="Cm" Type="nvarchar" MaxLength="800" Nullable="false" />
+          <Property Name="Create_Date" Type="datetime" Nullable="false" />
+          <Property Name="Parent_id" Type="int" />
+        </EntityType>
+        <EntityType Name="Feature">
+          <Key>
+            <PropertyRef Name="Feature_id" />
+          </Key>
+          <Property Name="Feature_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Feature_title" Type="nvarchar" MaxLength="150" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Gallery">
+          <Key>
+            <PropertyRef Name="Gallery_id" />
+          </Key>
+          <Property Name="Gallery_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="product_id" Type="int" Nullable="false" />
+          <Property Name="Gallery_image" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="title" Type="nvarchar" MaxLength="250" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OrderDetails">
+          <Key>
+            <PropertyRef Name="DetailID" />
+          </Key>
+          <Property Name="DetailID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderID" Type="int" Nullable="false" />
+          <Property Name="Product_id" Type="int" Nullable="false" />
+          <Property Name="Price" Type="int" Nullable="false" />
+          <Property Name="Count" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="Order_id" />
+          </Key>
+          <Property Name="Order_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="User_id" Type="int" Nullable="false" />
+          <Property Name="Datetime" Type="date" Nullable="false" />
+          <Property Name="isFinally" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PFRell">
+          <Key>
+            <PropertyRef Name="PF_id" />
+          </Key>
+          <Property Name="PF_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Product_id" Type="int" Nullable="false" />
+          <Property Name="Feature_id" Type="int" Nullable="false" />
+          <Property Name="value" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="PGRell">
+          <Key>
+            <PropertyRef Name="PG_id" />
+          </Key>
+          <Property Name="PG_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Product_id" Type="int" Nullable="false" />
+          <Property Name="Group_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="Product_id" />
+          </Key>
+          <Property Name="Product_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Product_title" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Product_ShortDescription" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Product_text" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Product_price" Type="int" Nullable="false" />
+          <Property Name="Product_CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="Product_image" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Products_group">
+          <Key>
+            <PropertyRef Name="Group_id" />
+          </Key>
+          <Property Name="Group_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Group_title" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Parent_id" Type="int" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="Role_id" />
+          </Key>
+          <Property Name="Role_id" Type="int" Nullable="false" />
+          <Property Name="Role_title" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Role_name" Type="nvarchar" MaxLength="150" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Slider">
+          <Key>
+            <PropertyRef Name="SlideID" />
+          </Key>
+          <Property Name="SlideID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="350" Nullable="false" />
+          <Property Name="ImageName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="StartDate" Type="datetime" Nullable="false" />
+          <Property Name="EndDate" Type="datetime" Nullable="false" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tags">
+          <Key>
+            <PropertyRef Name="Tag_id" />
+          </Key>
+          <Property Name="Tag_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Product_id" Type="int" Nullable="false" />
+          <Property Name="Tag" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="User_id" />
+          </Key>
+          <Property Name="User_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Role_id" Type="int" Nullable="false" />
+          <Property Name="user_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="email" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="password" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ActiveCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+          <Property Name="RegisterDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Comment_Comment">
+          <End Role="Comment" Type="Self.Comment" Multiplicity="0..1" />
+          <End Role="Comment1" Type="Self.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Comment">
+              <PropertyRef Name="Comment_id" />
+            </Principal>
+            <Dependent Role="Comment1">
+              <PropertyRef Name="Parent_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comment_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Product_id" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="Product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Gallery_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="Gallery" Type="Self.Gallery" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Product_id" />
+            </Principal>
+            <Dependent Role="Gallery">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderDetails_Orders">
+          <End Role="Orders" Type="Self.Orders" Multiplicity="1" />
+          <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="Order_id" />
+            </Principal>
+            <Dependent Role="OrderDetails">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderDetails_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Product_id" />
+            </Principal>
+            <Dependent Role="OrderDetails">
+              <PropertyRef Name="Product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="User_id" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="User_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PFRell_Feature">
+          <End Role="Feature" Type="Self.Feature" Multiplicity="1" />
+          <End Role="PFRell" Type="Self.PFRell" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Feature">
+              <PropertyRef Name="Feature_id" />
+            </Principal>
+            <Dependent Role="PFRell">
+              <PropertyRef Name="Feature_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PFRell_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="PFRell" Type="Self.PFRell" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Product_id" />
+            </Principal>
+            <Dependent Role="PFRell">
+              <PropertyRef Name="Product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PGRell_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="PGRell" Type="Self.PGRell" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Product_id" />
+            </Principal>
+            <Dependent Role="PGRell">
+              <PropertyRef Name="Product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PGRell_Products_group">
+          <End Role="Products_group" Type="Self.Products_group" Multiplicity="1" />
+          <End Role="PGRell" Type="Self.PGRell" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products_group">
+              <PropertyRef Name="Group_id" />
+            </Principal>
+            <Dependent Role="PGRell">
+              <PropertyRef Name="Group_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Products_group_Products_group1">
+          <End Role="Products_group" Type="Self.Products_group" Multiplicity="0..1" />
+          <End Role="Products_group1" Type="Self.Products_group" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products_group">
+              <PropertyRef Name="Group_id" />
+            </Principal>
+            <Dependent Role="Products_group1">
+              <PropertyRef Name="Parent_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tags_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="Tags" Type="Self.Tags" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Product_id" />
+            </Principal>
+            <Dependent Role="Tags">
+              <PropertyRef Name="Product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Roles">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="Role_id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="Role_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ProjModelStoreContainer">
+          <EntitySet Name="Comment" EntityType="Self.Comment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Feature" EntityType="Self.Feature" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Gallery" EntityType="Self.Gallery" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderDetails" EntityType="Self.OrderDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PFRell" EntityType="Self.PFRell" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PGRell" EntityType="Self.PGRell" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Products_group" EntityType="Self.Products_group" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Slider" EntityType="Self.Slider" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tags" EntityType="Self.Tags" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Comment_Comment" Association="Self.FK_Comment_Comment">
+            <End Role="Comment" EntitySet="Comment" />
+            <End Role="Comment1" EntitySet="Comment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comment_Product" Association="Self.FK_Comment_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Comment" EntitySet="Comment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Gallery_Product" Association="Self.FK_Gallery_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Gallery" EntitySet="Gallery" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderDetails_Orders" Association="Self.FK_OrderDetails_Orders">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="OrderDetails" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderDetails_Product" Association="Self.FK_OrderDetails_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="OrderDetails" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_User" Association="Self.FK_Orders_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PFRell_Feature" Association="Self.FK_PFRell_Feature">
+            <End Role="Feature" EntitySet="Feature" />
+            <End Role="PFRell" EntitySet="PFRell" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PFRell_Product" Association="Self.FK_PFRell_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="PFRell" EntitySet="PFRell" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PGRell_Product" Association="Self.FK_PGRell_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="PGRell" EntitySet="PGRell" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PGRell_Products_group" Association="Self.FK_PGRell_Products_group">
+            <End Role="Products_group" EntitySet="Products_group" />
+            <End Role="PGRell" EntitySet="PGRell" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Products_group_Products_group1" Association="Self.FK_Products_group_Products_group1">
+            <End Role="Products_group" EntitySet="Products_group" />
+            <End Role="Products_group1" EntitySet="Products_group" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tags_Product" Association="Self.FK_Tags_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Tags" EntitySet="Tags" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Roles" Association="Self.FK_User_Roles">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ProjModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="Role_id" />
+          </Key>
+          <Property Name="Role_id" Type="Int32" Nullable="false" />
+          <Property Name="Role_title" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Role_name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Users" Relationship="ProjModel.FK_User_Roles" FromRole="Role" ToRole="User" />
+        </EntityType>
+        <EntityContainer Name="ProjEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Roles" EntityType="Self.Role" />
+          <EntitySet Name="Users" EntityType="ProjModel.User" />
+          <AssociationSet Name="FK_User_Roles" Association="ProjModel.FK_User_Roles">
+            <End Role="Role" EntitySet="Roles" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <EntitySet Name="Products_group" EntityType="ProjModel.Products_group" />
+          <AssociationSet Name="FK_Products_group_Products_group1" Association="ProjModel.FK_Products_group_Products_group1">
+            <End Role="Products_group" EntitySet="Products_group" />
+            <End Role="Products_group1" EntitySet="Products_group" />
+          </AssociationSet>
+          <EntitySet Name="PGRells" EntityType="ProjModel.PGRell" />
+          <EntitySet Name="Products" EntityType="ProjModel.Product" />
+          <AssociationSet Name="FK_PGRell_Product" Association="ProjModel.FK_PGRell_Product">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="PGRell" EntitySet="PGRells" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PGRell_Products_group" Association="ProjModel.FK_PGRell_Products_group">
+            <End Role="Products_group" EntitySet="Products_group" />
+            <End Role="PGRell" EntitySet="PGRells" />
+          </AssociationSet>
+          <EntitySet Name="Galleries" EntityType="ProjModel.Gallery" />
+          <AssociationSet Name="FK_Gallery_Product" Association="ProjModel.FK_Gallery_Product">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="Gallery" EntitySet="Galleries" />
+          </AssociationSet>
+          <EntitySet Name="Tags" EntityType="ProjModel.Tag" />
+          <AssociationSet Name="FK_Tags_Product" Association="ProjModel.FK_Tags_Product">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="Tag" EntitySet="Tags" />
+          </AssociationSet>
+          <EntitySet Name="Features" EntityType="ProjModel.Feature" />
+          <EntitySet Name="PFRells" EntityType="ProjModel.PFRell" />
+          <AssociationSet Name="FK_PFRell_Feature" Association="ProjModel.FK_PFRell_Feature">
+            <End Role="Feature" EntitySet="Features" />
+            <End Role="PFRell" EntitySet="PFRells" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PFRell_Product" Association="ProjModel.FK_PFRell_Product">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="PFRell" EntitySet="PFRells" />
+          </AssociationSet>
+          <EntitySet Name="Comments" EntityType="ProjModel.Comment" />
+          <AssociationSet Name="FK_Comment_Comment" Association="ProjModel.FK_Comment_Comment">
+            <End Role="Comment" EntitySet="Comments" />
+            <End Role="Comment1" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comment_Product" Association="ProjModel.FK_Comment_Product">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="Comment" EntitySet="Comments" />
+          </AssociationSet>
+          <EntitySet Name="OrderDetails" EntityType="ProjModel.OrderDetail" />
+          <EntitySet Name="Orders" EntityType="ProjModel.Order" />
+          <AssociationSet Name="FK_OrderDetails_Orders" Association="ProjModel.FK_OrderDetails_Orders">
+            <End Role="Order" EntitySet="Orders" />
+            <End Role="OrderDetail" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderDetails_Product" Association="ProjModel.FK_OrderDetails_Product">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="OrderDetail" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_User" Association="ProjModel.FK_Orders_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+          <EntitySet Name="Sliders" EntityType="ProjModel.Slider" />
+        </EntityContainer>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="User_id" />
+          </Key>
+          <Property Name="User_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Role_id" Type="Int32" Nullable="false" />
+          <Property Name="user_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="ActiveCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <Property Name="RegisterDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Role" Relationship="ProjModel.FK_User_Roles" FromRole="User" ToRole="Role" />
+          <NavigationProperty Name="Orders" Relationship="ProjModel.FK_Orders_User" FromRole="User" ToRole="Order" />
+        </EntityType>
+        <Association Name="FK_User_Roles">
+          <End Type="ProjModel.Role" Role="Role" Multiplicity="1" />
+          <End Type="ProjModel.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="Role_id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="Role_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Products_group">
+          <Key>
+            <PropertyRef Name="Group_id" />
+          </Key>
+          <Property Name="Group_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Group_title" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Parent_id" Type="Int32" />
+          <NavigationProperty Name="Products_group1" Relationship="ProjModel.FK_Products_group_Products_group1" FromRole="Products_group" ToRole="Products_group1" />
+          <NavigationProperty Name="Products_group2" Relationship="ProjModel.FK_Products_group_Products_group1" FromRole="Products_group1" ToRole="Products_group" />
+          <NavigationProperty Name="PGRells" Relationship="ProjModel.FK_PGRell_Products_group" FromRole="Products_group" ToRole="PGRell" />
+        </EntityType>
+        <Association Name="FK_Products_group_Products_group1">
+          <End Type="ProjModel.Products_group" Role="Products_group" Multiplicity="0..1" />
+          <End Type="ProjModel.Products_group" Role="Products_group1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products_group">
+              <PropertyRef Name="Group_id" />
+            </Principal>
+            <Dependent Role="Products_group1">
+              <PropertyRef Name="Parent_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="PGRell">
+          <Key>
+            <PropertyRef Name="PG_id" />
+          </Key>
+          <Property Name="PG_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Product_id" Type="Int32" Nullable="false" />
+          <Property Name="Group_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Product" Relationship="ProjModel.FK_PGRell_Product" FromRole="PGRell" ToRole="Product" />
+          <NavigationProperty Name="Products_group" Relationship="ProjModel.FK_PGRell_Products_group" FromRole="PGRell" ToRole="Products_group" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="Product_id" />
+          </Key>
+          <Property Name="Product_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Product_title" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Product_ShortDescription" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Product_text" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Product_price" Type="Int32" Nullable="false" />
+          <Property Name="Product_CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Product_image" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PGRells" Relationship="ProjModel.FK_PGRell_Product" FromRole="Product" ToRole="PGRell" />
+          <NavigationProperty Name="Galleries" Relationship="ProjModel.FK_Gallery_Product" FromRole="Product" ToRole="Gallery" />
+          <NavigationProperty Name="Tags" Relationship="ProjModel.FK_Tags_Product" FromRole="Product" ToRole="Tag" />
+          <NavigationProperty Name="PFRells" Relationship="ProjModel.FK_PFRell_Product" FromRole="Product" ToRole="PFRell" />
+          <NavigationProperty Name="Comments" Relationship="ProjModel.FK_Comment_Product" FromRole="Product" ToRole="Comment" />
+          <NavigationProperty Name="OrderDetails" Relationship="ProjModel.FK_OrderDetails_Product" FromRole="Product" ToRole="OrderDetail" />
+        </EntityType>
+        <Association Name="FK_PGRell_Product">
+          <End Type="ProjModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="ProjModel.PGRell" Role="PGRell" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Product_id" />
+            </Principal>
+            <Dependent Role="PGRell">
+              <PropertyRef Name="Product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PGRell_Products_group">
+          <End Type="ProjModel.Products_group" Role="Products_group" Multiplicity="1" />
+          <End Type="ProjModel.PGRell" Role="PGRell" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products_group">
+              <PropertyRef Name="Group_id" />
+            </Principal>
+            <Dependent Role="PGRell">
+              <PropertyRef Name="Group_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Gallery">
+          <Key>
+            <PropertyRef Name="Gallery_id" />
+          </Key>
+          <Property Name="Gallery_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="product_id" Type="Int32" Nullable="false" />
+          <Property Name="Gallery_image" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Product" Relationship="ProjModel.FK_Gallery_Product" FromRole="Gallery" ToRole="Product" />
+          <Property Name="title" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_Gallery_Product">
+          <End Type="ProjModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="ProjModel.Gallery" Role="Gallery" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Product_id" />
+            </Principal>
+            <Dependent Role="Gallery">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Tag">
+          <Key>
+            <PropertyRef Name="Tag_id" />
+          </Key>
+          <Property Name="Tag_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Product_id" Type="Int32" Nullable="false" />
+          <Property Name="Tag1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Product" Relationship="ProjModel.FK_Tags_Product" FromRole="Tag" ToRole="Product" />
+        </EntityType>
+        <Association Name="FK_Tags_Product">
+          <End Type="ProjModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="ProjModel.Tag" Role="Tag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Product_id" />
+            </Principal>
+            <Dependent Role="Tag">
+              <PropertyRef Name="Product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Feature">
+          <Key>
+            <PropertyRef Name="Feature_id" />
+          </Key>
+          <Property Name="Feature_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Feature_title" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="PFRells" Relationship="ProjModel.FK_PFRell_Feature" FromRole="Feature" ToRole="PFRell" />
+        </EntityType>
+        <EntityType Name="PFRell">
+          <Key>
+            <PropertyRef Name="PF_id" />
+          </Key>
+          <Property Name="PF_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Product_id" Type="Int32" Nullable="false" />
+          <Property Name="Feature_id" Type="Int32" Nullable="false" />
+          <Property Name="value" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Feature" Relationship="ProjModel.FK_PFRell_Feature" FromRole="PFRell" ToRole="Feature" />
+          <NavigationProperty Name="Product" Relationship="ProjModel.FK_PFRell_Product" FromRole="PFRell" ToRole="Product" />
+        </EntityType>
+        <Association Name="FK_PFRell_Feature">
+          <End Type="ProjModel.Feature" Role="Feature" Multiplicity="1" />
+          <End Type="ProjModel.PFRell" Role="PFRell" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Feature">
+              <PropertyRef Name="Feature_id" />
+            </Principal>
+            <Dependent Role="PFRell">
+              <PropertyRef Name="Feature_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PFRell_Product">
+          <End Type="ProjModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="ProjModel.PFRell" Role="PFRell" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Product_id" />
+            </Principal>
+            <Dependent Role="PFRell">
+              <PropertyRef Name="Product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="Comment_id" />
+          </Key>
+          <Property Name="Comment_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Product_id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Name="WebSite" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Name="Cm" Type="String" Nullable="false" MaxLength="800" FixedLength="false" Unicode="true" />
+          <Property Name="Create_Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Parent_id" Type="Int32" />
+          <NavigationProperty Name="Comment1" Relationship="ProjModel.FK_Comment_Comment" FromRole="Comment" ToRole="Comment1" />
+          <NavigationProperty Name="Comment2" Relationship="ProjModel.FK_Comment_Comment" FromRole="Comment1" ToRole="Comment" />
+          <NavigationProperty Name="Product" Relationship="ProjModel.FK_Comment_Product" FromRole="Comment" ToRole="Product" />
+        </EntityType>
+        <Association Name="FK_Comment_Comment">
+          <End Type="ProjModel.Comment" Role="Comment" Multiplicity="0..1" />
+          <End Type="ProjModel.Comment" Role="Comment1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Comment">
+              <PropertyRef Name="Comment_id" />
+            </Principal>
+            <Dependent Role="Comment1">
+              <PropertyRef Name="Parent_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comment_Product">
+          <End Type="ProjModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="ProjModel.Comment" Role="Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Product_id" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="Product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="OrderDetail">
+          <Key>
+            <PropertyRef Name="DetailID" />
+          </Key>
+          <Property Name="DetailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderID" Type="Int32" Nullable="false" />
+          <Property Name="Product_id" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Int32" Nullable="false" />
+          <Property Name="Count" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Order" Relationship="ProjModel.FK_OrderDetails_Orders" FromRole="OrderDetail" ToRole="Order" />
+          <NavigationProperty Name="Product" Relationship="ProjModel.FK_OrderDetails_Product" FromRole="OrderDetail" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="Order_id" />
+          </Key>
+          <Property Name="Order_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="User_id" Type="Int32" Nullable="false" />
+          <Property Name="Datetime" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="isFinally" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="OrderDetails" Relationship="ProjModel.FK_OrderDetails_Orders" FromRole="Order" ToRole="OrderDetail" />
+          <NavigationProperty Name="User" Relationship="ProjModel.FK_Orders_User" FromRole="Order" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_OrderDetails_Orders">
+          <End Type="ProjModel.Order" Role="Order" Multiplicity="1" />
+          <End Type="ProjModel.OrderDetail" Role="OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="Order_id" />
+            </Principal>
+            <Dependent Role="OrderDetail">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderDetails_Product">
+          <End Type="ProjModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="ProjModel.OrderDetail" Role="OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Product_id" />
+            </Principal>
+            <Dependent Role="OrderDetail">
+              <PropertyRef Name="Product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_User">
+          <End Type="ProjModel.User" Role="User" Multiplicity="1" />
+          <End Type="ProjModel.Order" Role="Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="User_id" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="User_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Slider">
+          <Key>
+            <PropertyRef Name="SlideID" />
+          </Key>
+          <Property Name="SlideID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Name="ImageName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ProjModelStoreContainer" CdmEntityContainer="ProjEntities">
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="ProjModel.Role">
+              <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="Role_id" ColumnName="Role_id" />
+                <ScalarProperty Name="Role_title" ColumnName="Role_title" />
+                <ScalarProperty Name="Role_name" ColumnName="Role_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="ProjModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="RegisterDate" ColumnName="RegisterDate" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="ActiveCode" ColumnName="ActiveCode" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="user_name" ColumnName="user_name" />
+                <ScalarProperty Name="Role_id" ColumnName="Role_id" />
+                <ScalarProperty Name="User_id" ColumnName="User_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products_group">
+            <EntityTypeMapping TypeName="ProjModel.Products_group">
+              <MappingFragment StoreEntitySet="Products_group">
+                <ScalarProperty Name="Parent_id" ColumnName="Parent_id" />
+                <ScalarProperty Name="Group_title" ColumnName="Group_title" />
+                <ScalarProperty Name="Group_id" ColumnName="Group_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PGRells">
+            <EntityTypeMapping TypeName="ProjModel.PGRell">
+              <MappingFragment StoreEntitySet="PGRell">
+                <ScalarProperty Name="Group_id" ColumnName="Group_id" />
+                <ScalarProperty Name="Product_id" ColumnName="Product_id" />
+                <ScalarProperty Name="PG_id" ColumnName="PG_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="ProjModel.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="Product_image" ColumnName="Product_image" />
+                <ScalarProperty Name="Product_CreateDate" ColumnName="Product_CreateDate" />
+                <ScalarProperty Name="Product_price" ColumnName="Product_price" />
+                <ScalarProperty Name="Product_text" ColumnName="Product_text" />
+                <ScalarProperty Name="Product_ShortDescription" ColumnName="Product_ShortDescription" />
+                <ScalarProperty Name="Product_title" ColumnName="Product_title" />
+                <ScalarProperty Name="Product_id" ColumnName="Product_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Galleries">
+            <EntityTypeMapping TypeName="ProjModel.Gallery">
+              <MappingFragment StoreEntitySet="Gallery">
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="Gallery_image" ColumnName="Gallery_image" />
+                <ScalarProperty Name="product_id" ColumnName="product_id" />
+                <ScalarProperty Name="Gallery_id" ColumnName="Gallery_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tags">
+            <EntityTypeMapping TypeName="ProjModel.Tag">
+              <MappingFragment StoreEntitySet="Tags">
+                <ScalarProperty Name="Tag1" ColumnName="Tag" />
+                <ScalarProperty Name="Product_id" ColumnName="Product_id" />
+                <ScalarProperty Name="Tag_id" ColumnName="Tag_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Features">
+            <EntityTypeMapping TypeName="ProjModel.Feature">
+              <MappingFragment StoreEntitySet="Feature">
+                <ScalarProperty Name="Feature_title" ColumnName="Feature_title" />
+                <ScalarProperty Name="Feature_id" ColumnName="Feature_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PFRells">
+            <EntityTypeMapping TypeName="ProjModel.PFRell">
+              <MappingFragment StoreEntitySet="PFRell">
+                <ScalarProperty Name="value" ColumnName="value" />
+                <ScalarProperty Name="Feature_id" ColumnName="Feature_id" />
+                <ScalarProperty Name="Product_id" ColumnName="Product_id" />
+                <ScalarProperty Name="PF_id" ColumnName="PF_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Comments">
+            <EntityTypeMapping TypeName="ProjModel.Comment">
+              <MappingFragment StoreEntitySet="Comment">
+                <ScalarProperty Name="Parent_id" ColumnName="Parent_id" />
+                <ScalarProperty Name="Create_Date" ColumnName="Create_Date" />
+                <ScalarProperty Name="Cm" ColumnName="Cm" />
+                <ScalarProperty Name="WebSite" ColumnName="WebSite" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Product_id" ColumnName="Product_id" />
+                <ScalarProperty Name="Comment_id" ColumnName="Comment_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderDetails">
+            <EntityTypeMapping TypeName="ProjModel.OrderDetail">
+              <MappingFragment StoreEntitySet="OrderDetails">
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Product_id" ColumnName="Product_id" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="DetailID" ColumnName="DetailID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="ProjModel.Order">
+              <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="isFinally" ColumnName="isFinally" />
+                <ScalarProperty Name="Datetime" ColumnName="Datetime" />
+                <ScalarProperty Name="User_id" ColumnName="User_id" />
+                <ScalarProperty Name="Order_id" ColumnName="Order_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sliders">
+            <EntityTypeMapping TypeName="ProjModel.Slider">
+              <MappingFragment StoreEntitySet="Slider">
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="ImageName" ColumnName="ImageName" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="SlideID" ColumnName="SlideID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

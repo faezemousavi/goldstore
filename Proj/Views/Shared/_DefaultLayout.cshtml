@@ -1,0 +1,182 @@
+﻿<!DOCTYPE html>
+<html class="no-js" dir="rtl" lang="fa-IR">
+<head>
+    <meta charset="UTF-8">
+    <title> @ViewBag.title</title>
+    <base href="">
+    <meta name="googlebot" content="index,follow">
+    <meta name="robots" content="noodp,noydir">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="/Content/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/Content/css/bootstrap-rtl.min.css">
+    <link rel="stylesheet" type="text/css" href="/Content/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/Content/css/carousel.css">
+    <link rel="stylesheet" type="text/css" href="/Content/css/owl.carousel.css">
+    <link rel="stylesheet" type="text/css" href="/Content/css/style.css">
+    <link href="~/Content/CustomStyle.css" rel="stylesheet" />
+    <script src="/Content/js/jquery-v1.11.3.js"></script>
+</head>
+<body>
+    <script src="/Content/js/modernizr.js"></script>
+    <div class="top-nav">
+        <div class="container">
+            <div class="col-md-6 col-sm-7 col-xs-7 right-nav">
+               
+                <!-- Clientarea and Basket -->
+                <div class="clientarea">
+                    <ul>
+                        @Html.Partial("_LoggedinUser")
+                         <li style="visibility:hidden;"><a href=""><i class="fa fa-shopping-bag"></i> سبد خرید <span id="countShopCard"></span></a></li>
+                    </ul>
+                </div>
+                <!-- End Clientarea and Basket -->
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <!-- site Header -->
+    <header class="header-site">
+        <div class="container">
+            <div class="col-md-7 col-sm-7 logo-layer">
+                <a href="" class="logo"><img src="/Content/img/logo1.png"></a>
+                <h1>فروشگاه <span>آنلایــــــن</span> طلا  برلیان</h1>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </header>
+    <!-- End site Header -->
+    <!-- Mega Menu -->
+    <nav class="mega-menu">
+        <div class="container">
+            <span class="responsive-list"><i class="fa fa-th-list"></i></span>
+            <ul>
+                <li><a href="/">صفحه اصلی </a></li>
+                <li><a href="/archive"> آرشیو محصولات </a></li>
+                @*<li><a href=""> گردنبند </a></li>
+                <li><a href=""> دستبند </a></li>
+                <li><a href=""> گوشواره </a></li>
+                <li><a href=""> انگشتر </a></li>
+                <li><a href=""> ست طلا </a></li>*@
+            </ul>
+
+            <!-- Search -->
+            <div class="form-search">
+                <span><i class="fa fa-search"></i></span>
+                <form action="/Search" method="get">
+                    <input type="text" placeholder=" جستجو کنید ..."  name="q" class="border-radius">
+                    <button type="submit" class="border-radius"> بگرد </button>
+                </form>
+            </div>
+            <!-- End Search -->
+
+        </div>
+    </nav>
+    <!-- End Mega Menu -->
+    <!-- slider -->
+
+    @RenderSection("Slider", false)
+
+    <!-- End slider -->
+
+    <div class="container margin-top-25">
+        <aside class="col-md-3 col-sm-4 right-side-content">
+            @RenderSection("Filters", false)
+            <!-- Basket -->
+            <div id="ShowCard">
+                @Html.Action("ShowCard", "ShopCard")
+            </div>
+            <!-- End Basket -->
+            <!-- compare -->
+            <div id="compare">
+                @Html.Action("ListCompare" , "Compare")
+            </div>
+            <!-- End compare -->
+            <!-- Category -->
+            @Html.Action("ShowGroups", "Product", new { area = "" })
+            <!-- End Category -->
+            <!-- Category -->
+            <!-- End Category -->
+        </aside>
+        <div class="col-md-9 col-sm-8 left-side-content">
+
+            @RenderBody()
+
+        </div>
+        <div class="clearfix"></div>
+    </div>
+
+    <footer>
+
+
+        <div class="bottom-footer">
+            <div class="container">
+                <div class="col-lg-8 col-md-8 col-sm-6">
+                    <ul>
+                        <li><a href=""> خانه </a></li>
+                        <li><a href="">قوانین سایت </a></li>
+                        <li><a href=""> درباره ما </a></li>
+                        <li><a href=""> تماس با ما </a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-6">
+                    <div class="social-layer">
+                        <a href="" class="border-radius"><i class="fa fa-facebook"></i></a>
+                        <a href="" class="border-radius"><i class="fa fa-linkedin"></i></a>
+                        <a href="" class="border-radius"><i class="fa fa-twitter"></i></a>
+                        <a href="" class="border-radius"><i class="fa fa-google-plus"></i></a>
+                        <a href="" class="border-radius"><i class="fa fa-paper-plane"></i></a>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/Content/js/bootstrap.min.js"></script>
+    <script src="/Content/js/owl.carousel.js"></script>
+    <script src="/Content/js/script.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script>
+        $(function () {
+            countShopCard();
+        });
+
+        function countShopCard() {
+            $.get("/Api/Shop", function (res) {
+
+                $("#countShopCard").html(res);
+            });
+        }
+
+        function AddToCard(id) {
+            $.get("/Api/Shop/" + id, function (res) {
+                $("#countShopCard").html(res);
+                updateShopCard();
+            });
+        }
+
+        function updateShopCard() {
+            $("#ShowCard").load("/ShopCard/ShowCard").fadeOut(800).fadeIn(800);
+        }
+
+
+        function AddToCompare(id)
+        {
+            $.get("/Compare/AddToCompare/" + id, function (res) {
+                $("#compare").html(res);
+            });
+        }
+
+        function DeleteCompare(id) {
+            $.get("/Compare/DeleteFromCompare/" + id, function (res) {
+                $("#compare").html(res);
+            });
+        }
+    </script>
+</body>
+</html>

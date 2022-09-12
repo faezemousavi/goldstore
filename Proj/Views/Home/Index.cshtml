@@ -1,0 +1,13 @@
+﻿
+@{
+    ViewBag.Title = "فروشگاه طلا برلیان";
+    Layout = "~/Views/Shared/_DefaultLayout.cshtml";
+}
+
+
+
+@section slider{
+    @Html.Action("Slider")
+    }
+
+@Html.Action("LastProduct", "product")

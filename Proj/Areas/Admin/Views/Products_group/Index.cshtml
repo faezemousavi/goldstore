@@ -1,0 +1,62 @@
+﻿@model IEnumerable<DataLayer.Products_group>
+
+
+@{
+    ViewBag.Title = "نمایش دسته بندی کالاها";
+    Layout = "~/Areas/Admin/Views/Shared/_DefaultAdmin.cshtml";
+}
+
+<h2>نمایش دسته بندی کالاها</h2>
+
+<p>
+    <a class="btn btn-success" href=@Url.Action("create")>افزودن سرگروه جدید</a>
+</p>
+<table class="table table-bordered">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Group_title)
+        </th>
+        <th>
+            زیر گروه ها
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Group_title)
+            </td>
+            <td>
+                @if (item.Products_group1.Any())
+                {
+                    <ul>
+                        @foreach (var subGroup in item.Products_group1)
+                        {
+                            <li>
+                                @subGroup.Group_title
+                                <a href="/admin/products_group/edit/@subGroup.Group_id"><i class="glyphicon glyphicon-edit"></i></a>
+                                <a href="/admin/products_group/delete/@subGroup.Group_id"><i class="glyphicon glyphicon-trash"></i></a>
+                           
+                            </li>
+
+                         }
+                    </ul>
+                }
+            </td>
+            <td>
+                <a class="btn btn-primary btn-xs" href="/admin/products_group/create/@item.Group_id">
+                    <i class="glyphicon glyphicon-plus"></i>
+                </a>
+                <a class="btn btn-warning btn-xs" href="/admin/products_group/edit/@item.Group_id">
+                    <i class="glyphicon glyphicon-edit"></i>
+                </a>
+                <a class="btn btn-danger btn-xs" href="/admin/products_group/delete/@item.Group_id">
+                    <i class="glyphicon glyphicon-trash"></i>
+                </a>
+            </td>
+        </tr>
+    }
+
+</table>
